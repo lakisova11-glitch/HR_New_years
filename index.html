@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -23,10 +23,36 @@
     padding: 50px;
     backdrop-filter: blur(6px);
     max-width: 500px;
-    animation: fadeIn 2s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
   }
   h1 { font-size: 2em; margin-bottom: 10px; }
   p { font-size: 1.2em; line-height: 1.5; }
+  input {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1em;
+    margin-top: 20px;
+    width: 70%;
+    text-align: center;
+    font-family: 'Georgia', serif;
+  }
+  button {
+    margin-top: 15px;
+    padding: 12px 30px;
+    border-radius: 10px;
+    border: none;
+    background: #fff;
+    color: #203a43;
+    font-size: 1em;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    transition: 0.3s;
+  }
+  button:hover {
+    background: #e0e0e0;
+  }
+  .hidden { display: none; }
   @keyframes fadeIn {
     from {opacity:0; transform: translateY(20px);}
     to {opacity:1; transform: translateY(0);}
@@ -44,18 +70,31 @@
 </style>
 </head>
 <body>
-  <div class="card">
-    <h1 id="greeting">С Новым годом!</h1>
+
+  <div class="card" id="formCard">
+    <h1>Привет! 👋</h1>
+    <p>Как тебя зовут?</p>
+    <input type="text" id="nameInput" placeholder="Введи своё имя">
+    <br>
+    <button onclick="showGreeting()">Узнать поздравление</button>
+  </div>
+
+  <div class="card hidden" id="greetingCard">
+    <h1 id="greeting"></h1>
     <p>Пусть этот год принесёт тебе вдохновение, поддержку близких и побольше поводов для искренней радости. Мы рады, что ты с нами 🥂✨</p>
   </div>
 
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const name = params.get('name');
-  if (name) {
-    document.getElementById('greeting').innerText = `С Новым годом, ${name}!`;
+  function showGreeting() {
+    const name = document.getElementById('nameInput').value.trim();
+    const greetingText = name ? `С Новым годом, ${name}!` : 'С Новым годом!';
+
+    document.getElementById('greeting').innerText = greetingText;
+    document.getElementById('formCard').classList.add('hidden');
+    document.getElementById('greetingCard').classList.remove('hidden');
   }
 
+  // Снег появляется сразу, независимо от этапа
   for (let i = 0; i < 40; i++) {
     const flake = document.createElement('div');
     flake.className = 'snow';
