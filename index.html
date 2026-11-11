@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 26.2.7.3 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.5in 11in; margin: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 115%; background: transparent }
+		pre { background: transparent }
+		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		pre.cjk { font-family: "Noto Sans Mono CJK SC", monospace; font-size: 10pt }
+		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre class="western">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ru&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;С Новым годом!&lt;/title&gt;
+&lt;style&gt;
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Georgia', serif;
+    color: #fff;
+    overflow: hidden;
+    text-align: center;
+  }
+  .card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 50px;
+    backdrop-filter: blur(6px);
+    max-width: 500px;
+    animation: fadeIn 2s ease-in-out;
+  }
+  h1 { font-size: 2em; margin-bottom: 10px; }
+  p { font-size: 1.2em; line-height: 1.5; }
+  @keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+  .snow {
+    position: fixed;
+    top: -10px;
+    color: white;
+    font-size: 1.5em;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh); }
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;h1 id=&quot;greeting&quot;&gt;С Новым годом!&lt;/h1&gt;
+    &lt;p&gt;Пусть этот год принесёт тебе вдохновение, поддержку близких и побольше поводов для искренней радости. Мы рады, что ты с нами 🥂✨&lt;/p&gt;
+  &lt;/div&gt;
+
+&lt;script&gt;
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get('name');
+  if (name) {
+    document.getElementById('greeting').innerText = `С Новым годом, ${name}!`;
+  }
+
+  for (let i = 0; i &lt; 40; i++) {
+    const flake = document.createElement('div');
+    flake.className = 'snow';
+    flake.innerText = '❄';
+    flake.style.left = Math.random() * 100 + 'vw';
+    flake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+    flake.style.opacity = Math.random();
+    document.body.appendChild(flake);
+  }
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</body>
+</html>
