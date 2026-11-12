@@ -4,54 +4,188 @@
 <meta charset="UTF-8">
 <title>С Новым годом!</title>
 <style>
+  * { box-sizing: border-box; }
   body {
     margin: 0;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    font-family: 'Georgia', serif;
-    color: #fff;
+    background: #1e3a4c;
+    font-family: 'Courier New', monospace;
+    color: #fff5e6;
     overflow: hidden;
     text-align: center;
+    position: relative;
   }
+
+  .wall {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, #2c5270 0 20px, #254862 20px 40px);
+  }
+
+  .floor {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 25vh;
+    background: repeating-linear-gradient(90deg, #6b4226 0 20px, #5c3820 20px 40px);
+    border-top: 6px solid #2e1c10;
+  }
+
+  .carpet {
+    position: fixed;
+    bottom: 4vh; left: 50%;
+    transform: translateX(-50%);
+    width: 320px; height: 110px;
+    background: #8B0000;
+    border: 8px solid #d4af37;
+    background-image: repeating-linear-gradient(45deg, rgba(212,175,55,0.2) 0 10px, transparent 10px 20px);
+    z-index: 1;
+  }
+
+  .curtain {
+    position: fixed;
+    left: 0; top: 0; bottom: 25vh;
+    width: 70px;
+    background: repeating-linear-gradient(90deg, #1a1a2e 0 10px, #16162a 10px 20px);
+    z-index: 2;
+  }
+  .curtain .light {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #fff3a0;
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px #fff3a0;
+    animation: twinkle 1.5s infinite alternate;
+  }
+
+  .lamp {
+    position: fixed;
+    bottom: 22vh; left: 90px;
+    z-index: 2;
+  }
+  .lamp-shade {
+    width: 60px; height: 40px;
+    background: #e8c87a;
+    clip-path: polygon(20% 0, 80% 0, 100% 100%, 0% 100%);
+    box-shadow: 0 0 40px 20px rgba(232,200,122,0.4);
+  }
+  .lamp-pole {
+    width: 6px; height: 70px;
+    background: #3e2a16;
+    margin: 0 auto;
+  }
+  .lamp-base {
+    width: 30px; height: 6px;
+    background: #3e2a16;
+    margin: 0 auto;
+  }
+
+  .piano {
+    position: fixed;
+    bottom: 22vh; left: 180px;
+    width: 120px; height: 70px;
+    background: #2e1c10;
+    border: 4px solid #1a0f08;
+    border-radius: 4px 4px 0 0;
+    z-index: 2;
+  }
+  .piano::before {
+    content: "";
+    position: absolute;
+    top: 6px; left: 6px; right: 6px;
+    height: 16px;
+    background: repeating-linear-gradient(90deg, #fff 0 6px, #1a0f08 6px 8px);
+  }
+  .piano .candle {
+    position: absolute;
+    top: -22px; right: 10px;
+    font-size: 20px;
+  }
+
+  .tree {
+    position: fixed;
+    bottom: 22vh; right: 10%;
+    font-size: 90px;
+    z-index: 1;
+    filter: drop-shadow(0 0 12px gold);
+  }
+
+  .flags {
+    position: fixed;
+    top: 10px; left: 0; right: 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 3;
+  }
+  .flags span {
+    display: inline-block;
+    width: 0; height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 14px solid;
+  }
+  .flags span:nth-child(odd) { border-top-color: #d4af37; }
+  .flags span:nth-child(even) { border-top-color: #8B0000; }
+
+  @keyframes twinkle {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+  }
+
   .card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 20px;
-    padding: 50px;
-    backdrop-filter: blur(6px);
-    max-width: 500px;
+    background: #2b1d0e;
+    border: 4px double #d4af37;
+    border-radius: 6px;
+    padding: 40px;
+    max-width: 440px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.6);
     animation: fadeIn 1s ease-in-out;
+    position: relative;
+    z-index: 10;
   }
-  h1 { font-size: 2em; margin-bottom: 10px; }
-  p { font-size: 1.2em; line-height: 1.5; }
+  .card::before {
+    content: "🎄";
+    position: absolute;
+    top: -28px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+  }
+  h1 { font-size: 1.6em; margin-bottom: 10px; color: #d4af37; text-shadow: 1px 1px 0 #000; }
+  p { font-size: 1em; line-height: 1.5; }
+  .signature {
+    display: block;
+    margin-top: 16px;
+    font-style: italic;
+    color: #d4af37;
+    font-size: 0.95em;
+  }
   input {
-    padding: 12px 20px;
-    border-radius: 10px;
-    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    border: 2px solid #d4af37;
+    background: #fff5e6;
     font-size: 1em;
-    margin-top: 20px;
-    width: 70%;
+    margin-top: 15px;
+    width: 65%;
     text-align: center;
-    font-family: 'Georgia', serif;
+    font-family: 'Courier New', monospace;
+    color: #2b1d0e;
   }
   button {
-    margin-top: 15px;
-    padding: 12px 30px;
-    border-radius: 10px;
-    border: none;
-    background: #fff;
-    color: #203a43;
+    margin-top: 12px;
+    padding: 10px 26px;
+    border-radius: 4px;
+    border: 2px solid #d4af37;
+    background: #d4af37;
+    color: #2b1d0e;
     font-size: 1em;
     cursor: pointer;
-    font-family: 'Georgia', serif;
-    transition: 0.3s;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
   }
-  button:hover {
-    background: #e0e0e0;
-  }
+  button:hover { background: #fff5e6; }
   .hidden { display: none; }
   @keyframes fadeIn {
     from {opacity:0; transform: translateY(20px);}
@@ -60,42 +194,93 @@
   .snow {
     position: fixed;
     top: -10px;
-    color: white;
-    font-size: 1.5em;
+    color: #fff5e6;
+    font-size: 1.2em;
     animation: fall linear infinite;
+    opacity: 0.8;
+    z-index: 5;
   }
-  @keyframes fall {
-    to { transform: translateY(110vh); }
-  }
+  @keyframes fall { to { transform: translateY(110vh); } }
+  .garland { font-size: 1.2em; letter-spacing: 6px; margin-bottom: 12px; color: #d4af37; }
 </style>
 </head>
 <body>
 
+  <div class="wall"></div>
+  <div class="flags">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="floor"></div>
+  <div class="carpet"></div>
+
+  <div class="curtain" id="curtain"></div>
+  <div class="lamp">
+    <div class="lamp-shade"></div>
+    <div class="lamp-pole"></div>
+    <div class="lamp-base"></div>
+  </div>
+  <div class="piano">
+    <div class="candle">🕯️</div>
+  </div>
+  <div class="tree">🎄</div>
+
   <div class="card" id="formCard">
-    <h1>Привет! 👋</h1>
-    <p>Как тебя зовут?</p>
-    <input type="text" id="nameInput" placeholder="Введи своё имя">
+    <div class="garland">🟢🔴🟡🔴🟢</div>
+    <h1>С наступающим праздником! 🎄</h1>
+    <p>Представься, чтобы получить персональное поздравление от нашей команды:</p>
+    <input type="text" id="nameInput" placeholder="Твоё имя">
     <br>
-    <button onclick="showGreeting()">Узнать поздравление</button>
+    <button onclick="showGreeting()">Получить поздравление</button>
   </div>
 
   <div class="card hidden" id="greetingCard">
+    <div class="garland">🟢🔴🟡🔴🟢</div>
     <h1 id="greeting"></h1>
-    <p>Пусть этот год принесёт тебе вдохновение, поддержку близких и побольше поводов для искренней радости. Мы рады, что ты с нами 🥂✨</p>
+    <p id="wish"></p>
+    <span class="signature">С любовью и теплотой,<br>твоя HR команда</span>
   </div>
 
 <script>
+  const wishes = [
+    "Пусть оливье удаётся с первого раза, а мандарины не кончаются до самого марта!",
+    "Желаем, чтобы начальство было добрым, премия — вовремя, а настроение — новогодним круглый год!",
+    "Пусть в этом году сбудется всё загаданное под бой курантов, даже если загадывали второпях!",
+    "Пусть все дороги будут короткими, а пробки — только в шампанском!",
+    "Пусть этот год принесёт столько тепла, сколько в бабушкиных варежках!",
+    "Желаем крепкого здоровья, как у оливье на утро после праздника!",
+    "Пусть все мечты исполняются быстрее, чем тает снег на батарее!",
+    "Пусть в доме всегда пахнет мандаринами и хорошими новостями!",
+    "Желаем успеха во всех начинаниях, а усталости — только приятной, после танцев!",
+    "Пусть Дед Мороз исполнит всё, что не успел исполнить этот год!",
+    "Пусть рабочие будни будут светлыми, а выходные — долгими!",
+    "Желаем, чтобы счастье заходило без стука, как соседка за солью!",
+    "Пусть всё плохое останется в старом году, а новый принесёт только поводы для улыбки!",
+    "Желаем столько радости, сколько огней на новогодней ёлке!",
+    "Пусть в этом году всё получится с первого раза — ну, или хотя бы со второго!"
+  ];
+
   function showGreeting() {
     const name = document.getElementById('nameInput').value.trim();
     const greetingText = name ? `С Новым годом, ${name}!` : 'С Новым годом!';
+    const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
 
     document.getElementById('greeting').innerText = greetingText;
+    document.getElementById('wish').innerText = randomWish;
     document.getElementById('formCard').classList.add('hidden');
     document.getElementById('greetingCard').classList.remove('hidden');
   }
 
-  // Снег появляется сразу, независимо от этапа
-  for (let i = 0; i < 40; i++) {
+  const curtain = document.getElementById('curtain');
+  for (let i = 0; i < 10; i++) {
+    const light = document.createElement('div');
+    light.className = 'light';
+    light.style.left = Math.random() * 60 + 'px';
+    light.style.top = Math.random() * 90 + '%';
+    light.style.animationDelay = Math.random() * 2 + 's';
+    curtain.appendChild(light);
+  }
+
+  for (let i = 0; i < 35; i++) {
     const flake = document.createElement('div');
     flake.className = 'snow';
     flake.innerText = '❄';
